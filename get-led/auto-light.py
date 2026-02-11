@@ -8,9 +8,10 @@ GPIO.setup(p, GPIO.IN)
 state = 0
 while True:
     if GPIO.input(p):
+        state = 0
         GPIO.output(led, state)
-        time.sleep(0.3)
+        time.sleep(0.2)
     else:
-        state = not state
+        state = 1
         GPIO.output(led, state)
-        time.sleep(0.3)
+        time.sleep(0.2)
