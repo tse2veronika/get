@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 gpio_bits = [16, 20, 21, 25, 26, 17, 27, 22]
-dynamic_range = 3.3
+dynamic_range = 3.131
 class R2R_DAC:
     def __init__(self, gpio_bits, dynamic_range, verbose = False):
         self.gpio_bits = gpio_bits
@@ -25,7 +25,7 @@ class R2R_DAC:
         GPIO.output(self.gpio_bits, b)
       
 if __name__ == '__main__':
-    dac = R2R_DAC([16, 20, 21, 25, 26, 17, 27, 22], 3.130, True)
+    dac = R2R_DAC([16, 20, 21, 25, 26, 17, 27, 22], 3.131, True)
     try:
         while True:
             try:
