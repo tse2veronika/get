@@ -1,4 +1,5 @@
 import smbus
+dynamic_range = 5.3
 class MCP4725:
     def __init__(self, dynamic_range, address=0x61, verbose = True):
         self.bus = smbus.SMBus(1)
@@ -20,7 +21,7 @@ class MCP4725:
         if self.verbose:
             print(f'Число: {number}, отправленные по I2C данные [0x{(self.address << 1):02X}, 0x{first_byte:02X}, 0x{second_byte:02X}]\n')
     def set_voltage(self, voltage):
-        if not (0.0 <= voltage <= 4.2):
+        if not (0.0 <= voltage <= dynamic_range):
             print(f'Напряжение выходит за динамический диапазон ЦАП (0.00 - {dynamic_range:.2f} В')
             print('Устанавливаем 0.0 В')
         number = int(voltage / self.dynamic_range * 4095)
