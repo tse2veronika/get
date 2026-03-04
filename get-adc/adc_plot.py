@@ -9,7 +9,7 @@ def plot_voltage_vs_time(time, voltage, max_voltage):
     plt.ylim(0, max_voltage)
     plt.show()
 
-def plot_sampling_period_hist(time, max_voltage):
+def plot_sampling_period_hist(time):
     sampling_time = []
     for i in range(1, len(time)):
         sampling_time.append(time[i] - time[i-1])
