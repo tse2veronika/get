@@ -20,5 +20,4 @@ def plot_sampling_period_hist(time, max_voltage):
     plt.ylabel('Количество измерений')
     plt.xlim(0, 0.06)
     plt.grid(True, which='major', axis='both', linestyle='-', linewidth=0.5)
-    plt.ylim(0, max_voltage)
     plt.show()
