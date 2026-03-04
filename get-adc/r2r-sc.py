@@ -11,7 +11,7 @@ if __name__ == '__main__':
         while (time.time() - start) < duration:
             voltage_values.append(a.get_sc_voltage())
             time_values.append(time.time() - start)
-        adc_plot.plot_voltage_vs_time(time_values, voltage_values, 4)
-        adc_plot.plot_sampling_period_hist(time_values)
+        adc_plot.plot_voltage_vs_time(time_values, voltage_values, 3.5)
+        adc_plot.plot_sampling_period_hist(time_values, 3.5)
     finally:
         a.deinit()
