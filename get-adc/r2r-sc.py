@@ -1,7 +1,7 @@
 import r2r_adc
 import time
 import adc_plot
-a = r2r_adc.R2R_ADC(3.3, 0.0001)
+a = r2r_adc.R2R_ADC(3.3, 0.001)
 voltage_values = []
 time_values = []
 duration = 3.0

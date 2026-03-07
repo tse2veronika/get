@@ -22,7 +22,7 @@ class R2R_ADC:
     def sequential_counting_adc(self):
         for k in range(256):
             self.number_to_dac(k)
-            time.sleep(0.01)
+            time.sleep(self.compare_time)
             comparator_output = GPIO.input(self.comp_gpio)
             if comparator_output == 1:
                 return k
@@ -33,11 +33,29 @@ class R2R_ADC:
         value = (value / 255) * self.dynamic_range
         return value
 
+    def successive_approximation_adc(self):
+        left = 0
+        right = 256
+        value = 0
+        while (right - left) > 1:
+            value = (left + right) // 2
+            self.number_to_dac(value)
+            time.sleep(self.compare_time)
+            if GPIO.input(self.comp_gpio) == 1:
+                right = value
+            else:
+                left = value
+        return value
+    def get_sar_voltage(self):
+        value = self.successive_approximation_adc()
+        value = (value / 255) * self.dynamic_range
+        return value
+
 if __name__ == '__main__':
     try:
         r2r_adc = R2R_ADC(3.3, 0.01)
         while True:
-            voltage = r2r_adc.get_sc_voltage()
+            voltage = r2r_adc.get_sar_voltage()
             print(f'Напряжение: {voltage} В')
     finally:
         r2r_adc.deinit()
